@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<script type="text/javascript" src="../jquery.js"></script>
+		<script type="text/javascript" src="tbpp.js"></script>
+		<link rel="stylesheet" href="tbpp.css">
+		<style>
+			div#here {
+				border: 1px inset #999999;
+				border-radius: 2px;
+				padding: 10px 15px;
+				overflow-y: auto;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="here"></div>
+		<script type="text/javascript">
+			window.addEventListener("load", function(){
+				TBPP.init($("#here"), {
+					minHeight: "100px",
+					recognizers: [
+						{
+							re: /([^\s\/]+\/)+1/g,
+							css: "color: #7f9900; border-bottom: 1px dotted; padding-bottom: 1px;",
+						},
+						{
+							re: /([^\s\/]+\/)+2/g,
+							css: "color: #094891; border-bottom: 1px dotted; padding-bottom: 1px;",
+						},
+						{
+							re: /([^\s\/]+\/)+3/g,
+							css: "color: #009999; border-bottom: 1px dotted; padding-bottom: 1px;",
+						},
+					],
+				});
+				TBPP.setText($("#here"), "cs: Já/My/1 ti/vám/2 chci/chceme/1 o něm/ní/nich/3 něco říct.");
+				TBPP.focus($("#here"));
+			});
+		</script>
+
+		<button onclick="getText()">Get text</button>
+		<script type="text/javascript">
+			function getText(){
+				var text=TBPP.getText($("#here"));
+				alert(text);
+			}
+		</script>
+
+		<button onclick="setText()">Set text</button>
+		<script type="text/javascript">
+			function setText(){
+				var text=prompt("", "cs: Já/My/1 ti/vám/2 nechci/nechceme/1 o něm/ní/nich/3 nic říct.");
+				if(text!==null) TBPP.setText($("#here"), text);
+			}
+		</script>
+
+	</body>
+</html>

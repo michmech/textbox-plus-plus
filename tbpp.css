@@ -1,0 +1,27 @@
+div.TBPP {
+  position: relative;
+  font-family: monospace;
+  font-size: 1rem;
+  line-height: 1.5em;
+  /*border: 1px solid #dddddd;*/
+}
+div.TBPP > textarea {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  font: inherit;
+  background-color: transparent;
+  padding: 0px; margin: 0px; border: 0px;
+  white-space: pre-wrap;
+  color: transparent;
+  caret-color: #000000;
+  resize: none;
+  height: 0px;
+}
+div.TBPP > div.shad {
+  font: inherit;
+  position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px;
+  padding: 0px; margin: 0px; border: 0px;
+  white-space: pre-wrap;
+  color: #333333;
+}

@@ -23,15 +23,21 @@
 					minHeight: "100px",
 					recognizers: [
 						{
-							re: /([^\s\/]+\/)+1/g,
-							css: "color: #7f9900; border-bottom: 1px dotted; padding-bottom: 1px;",
+							scope: /(^|\n)cs:[^\n]*/g,
+							pattern: /([^\s\:\/]+\/)+1/g,
+							className: "",
+							css: "color: #188f12; border-bottom: 1px dotted; padding-bottom: 1px;",
 						},
 						{
-							re: /([^\s\/]+\/)+2/g,
-							css: "color: #094891; border-bottom: 1px dotted; padding-bottom: 1px;",
+							scope: /(^|\n)cs:[^\n]*/g,
+							pattern: /([^\s\:\/]+\/)+2/g,
+							className: "",
+							css: "color: #3171ba; border-bottom: 1px dotted; padding-bottom: 1px;",
 						},
 						{
-							re: /([^\s\/]+\/)+3/g,
+							scope: /(^|\n)cs:[^\n]*/g,
+							pattern: /([^\s\:\/]+\/)+3/g,
+							className: "",
 							css: "color: #009999; border-bottom: 1px dotted; padding-bottom: 1px;",
 						},
 					],

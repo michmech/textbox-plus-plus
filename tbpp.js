@@ -5,13 +5,13 @@ const TBPP={
     $div.html(`<div class="TBPP"><div class="shad"></div><textarea></textarea></div>`);
     $div.find(".TBPP").data("settings", settings);
     if(settings.minHeight) $div.find("textarea").css("min-height", settings.minHeight);
-    TBPP.autosize($div.find("textarea"));
     $div.find("textarea").on("input", TBPP.textboxChanged);
   },
   setText: function($div, text, focus){
     $div=$($div);
     text=text||"";
     $div.find("textarea").val(text);
+    TBPP.autosize($div.find("textarea"));
     $div.find("textarea").trigger("input");
   },
   getText: function($div){
@@ -27,11 +27,15 @@ const TBPP={
   textboxChanged: function(e){
     var $textarea=$(e.delegateTarget);
   	var text=$textarea.val();
+    //text=text.replace(/&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
     var settings=$textarea.closest(".TBPP").data("settings");
     (settings.recognizers||[]).map(recognizer => {
-      text=text.replace(recognizer.re, function(m){
-  			return `<span class="" style="${recognizer.css}">${m}</span>`;
-  		});
+      recognizer.scope=recognizer.scope||/.*/g;
+      text=text.replace(recognizer.scope, function(scope){
+        return scope.replace(recognizer.pattern, function(m){
+          return `<span class="${recognizer.className}" style="${recognizer.css}">${m}</span>`;
+        });
+      });
     });
     $textarea.parent().find(".shad").html(text);
   },

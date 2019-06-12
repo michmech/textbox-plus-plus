@@ -5,13 +5,15 @@ const TBPP={
     $div.html(`<div class="TBPP"><div class="shad"></div><textarea></textarea></div>`);
     $div.find(".TBPP").data("settings", settings);
     if(settings.minHeight) $div.find("textarea").css("min-height", settings.minHeight);
+    if(settings.textIndent) $div.find("textarea, div.shad").css("text-indent", settings.textIndent);
     $div.find("textarea").on("input", TBPP.textboxChanged);
+    TBPP.autosize($div.find("textarea"));
   },
-  setText: function($div, text, focus){
+  setText: function($div, text){
     $div=$($div);
     text=text||"";
     $div.find("textarea").val(text);
-    TBPP.autosize($div.find("textarea"));
+    TBPP.autosize.update($div.find("textarea"));
     $div.find("textarea").trigger("input");
   },
   getText: function($div){
@@ -23,7 +25,6 @@ const TBPP={
     $div=$($div);
     $div.find("textarea").focus();
   },
-
   textboxChanged: function(e){
     var $textarea=$(e.delegateTarget);
   	var text=$textarea.val();

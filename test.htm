@@ -6,22 +6,58 @@
 		<script type="text/javascript" src="tbpp.js"></script>
 		<link rel="stylesheet" href="tbpp.css">
 		<style>
-			div#here {
-				border: 1px inset #999999;
-				border-radius: 2px;
-				padding: 10px 15px;
-				overflow-y: auto;
+			body {
+				font-size: 1rem;
+				padding: 20px;
 			}
+			textarea {
+				outline-color: #cccccc; outline-width: 1px; outline-style: dotted; outline-offset: 4px;
+			}
+			textarea:focus {
+				outline-color: #6699cc; outline-width: 1px; outline-style: dotted; outline-offset: 4px;
+			}
+
+			div.element {
+				position: relative;
+				line-height: 1.5em;
+				margin-bottom: 10px;
+			}
+			div.element > div.lead {
+				font-family: monospace;
+				position: absolute; top: 0px; left: 0px;
+				background-color: #eeeeee; border-radius: 2px;
+			}
+			div.element > div.lead > span.anglebrack {
+				color: #336699;
+			}
+			div.element > div.lead > span.name {
+				color: maroon;
+			}
+			div.element > div.tbpp {
+			}
+
 		</style>
 	</head>
 	<body>
 
-		<div id="here"></div>
+		<div class="element">
+			<div class="lead"><span class="anglebrack">&lt;</span><span class="name">example</span><span class="anglebrack">&gt;</span></div>
+			<div class="tbpp"></div>
+		</div>
+
 		<script type="text/javascript">
 			window.addEventListener("load", function(){
-				TBPP.init($("#here"), {
-					minHeight: "100px",
+				TBPP.init($(".tbpp"), {
+					minHeight: "1.5em",
+					textIndent: "9.5ch",
 					recognizers: [
+						{
+							pattern: /\{[^\}]*\}[¹²³]+/g,
+							className: "",
+							css: "background-color: #f7f6dc",
+						},
+					],
+					x_recognizers: [
 						{
 							scope: /(^|\n)cs:[^\n]*/g,
 							pattern: /([^\s\:\/]+\/)+1/g,
@@ -42,15 +78,15 @@
 						},
 					],
 				});
-				TBPP.setText($("#here"), "cs: Já/My/1 ti/vám/2 chci/chceme/1 o něm/ní/nich/3 něco říct.");
-				TBPP.focus($("#here"));
+				//TBPP.setText($(".tbpp"), "cs: Já/My/1 ti/vám/2 chci/chceme/1 o něm/ní/nich/3 něco říct.");
+				TBPP.focus($(".tbpp").first());
 			});
 		</script>
 
 		<button onclick="getText()">Get text</button>
 		<script type="text/javascript">
 			function getText(){
-				var text=TBPP.getText($("#here"));
+				var text=TBPP.getText($(".tbpp"));
 				alert(text);
 			}
 		</script>
@@ -58,8 +94,8 @@
 		<button onclick="setText()">Set text</button>
 		<script type="text/javascript">
 			function setText(){
-				var text=prompt("", "cs: Já/My/1 ti/vám/2 nechci/nechceme/1 o něm/ní/nich/3 nic říct.");
-				if(text!==null) TBPP.setText($("#here"), text);
+				var text=prompt("", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like {readable English}¹. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).");
+				if(text!==null) TBPP.setText($(".tbpp"), text);
 			}
 		</script>
 

@@ -1,8 +1,7 @@
 div.TBPP {
   position: relative;
   font-family: monospace;
-  font-size: 1rem;
-  line-height: 1.5em;
+  font-size: 1em;
   /*border: 1px solid #dddddd;*/
 }
 div.TBPP > textarea {
@@ -10,6 +9,7 @@ div.TBPP > textarea {
   z-index: 1;
   width: 100%;
   font: inherit;
+  line-height: inherit;
   background-color: transparent;
   padding: 0px; margin: 0px; border: 0px;
   white-space: pre-wrap;
@@ -20,6 +20,7 @@ div.TBPP > textarea {
 }
 div.TBPP > div.shad {
   font: inherit;
+  line-height: inherit;
   position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px;
   padding: 0px; margin: 0px; border: 0px;
   white-space: pre-wrap;

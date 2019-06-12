@@ -34,6 +34,11 @@ const TBPP={
       recognizer.scope=recognizer.scope||/.*/g;
       text=text.replace(recognizer.scope, function(scope){
         return scope.replace(recognizer.pattern, function(m){
+          (recognizer.parts || []).map(part => {
+            m=m.replace(part.pattern, function(p){
+              return `<span class="${part.className}" style="${part.css}">${p}</span>`;
+            });
+          });
           return `<span class="${recognizer.className}" style="${recognizer.css}">${m}</span>`;
         });
       });

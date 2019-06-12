@@ -28,7 +28,6 @@ const TBPP={
   textboxChanged: function(e){
     var $textarea=$(e.delegateTarget);
   	var text=$textarea.val();
-    //text=text.replace(/&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
     var settings=$textarea.closest(".TBPP").data("settings");
     (settings.recognizers||[]).map(recognizer => {
       recognizer.scope=recognizer.scope||/.*/g;
